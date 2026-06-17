@@ -1,0 +1,75 @@
+# ==========================================
+# Root GitIgnore for AIRS Monorepo
+# Includes rules for Python, Spring Boot, React, and Containers
+# ==========================================
+
+# System / OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE & Editor specific
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# ==========================================
+# 🐍 Python (ai-service) Exclusions
+# ==========================================
+ai-service/__pycache__/
+ai-service/**/*.py[cod]
+ai-service/**/*$py.class
+ai-service/.pytest_cache/
+ai-service/.ipynb_checkpoints/
+ai-service/venv/
+ai-service/.venv/
+ai-service/env/
+ai-service/dist/
+ai-service/build/
+ai-service/*.egg-info/
+ai-service/chroma_db_data/  # Exclude vector database disk dumps
+
+# ==========================================
+# ☕ Java/Spring (backend-service) Exclusions
+# ==========================================
+backend-service/target/
+backend-service/*.jar
+backend-service/*.war
+backend-service/*.zip
+backend-service/*.tar.gz
+backend-service/bin/
+backend-service/.gradle/
+backend-service/build/
+backend-service/db_data/    # Database volume folders
+
+# ==========================================
+# ⚛️ React/Node (frontend-service) Exclusions
+# ==========================================
+frontend-service/node_modules/
+frontend-service/dist/
+frontend-service/build/
+frontend-service/.svelte-kit/
+frontend-service/.next/
+frontend-service/coverage/
+frontend-service/.npm/
+frontend-service/*.log
+
+# ==========================================
+# 🐳 Docker & Infrastructure Exclusions
+# ==========================================
+docker/elasticsearch_data/
+docker/postgres_data/
+docker/chroma_data/
+docker/*.env.local
+docker/*.env
+
+# Log files
+*.log
+logs/
+*.sqlite
