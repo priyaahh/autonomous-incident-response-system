@@ -18,6 +18,11 @@ Desktop.ini
 *.sln
 *.swp
 *.swo
+*.iml
+
+# Environment files
+.env
+.env.*
 
 # ==========================================
 # 🐍 Python (ai-service) Exclusions

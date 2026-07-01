@@ -1,54 +1,63 @@
-# AIRS Backend Service (Spring Boot)
+# Backend Service
 
-This microservice acts as the core gateway, handling incident alert ingestion, user authentication, security, dashboard aggregation queries, database management, and delegation to the LangGraph AI Service.
+This module contains the infrastructure-ready Spring Boot backend for the Autonomous Incident Response System (AIRS).
 
----
+## Overview
 
-## 📂 Package Architecture
+The backend service is intentionally scaffolded without business logic, CRUD endpoints, or entity classes so teammates can add modules such as logging, incidents, and follow-up workflows in a clean and maintainable way.
 
-The code conforms to standard DDD (Domain-Driven Design) structures under the base package `com.autosoc.airs`:
+## Structure
 
 ```text
-src/main/java/com/autosoc/airs/
-├── config/       # Spring Security, CORS, Async executors, Client configurations
-├── controller/   # REST Controllers (IncidentController, DashboardController)
-├── model/        # Entities (Incident, AuditLog) & DTOs (AlertRequest, ReportResponse)
-├── repository/   # Spring Data JPA Repository interfaces
-└── service/      # Business logic, AI Service Client wrapper (HTTP/gRPC)
+backend-service/
+├── src/main/java/com/airs/backendservice/
+│   ├── config/
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   ├── model/
+│   └── exception/
+├── src/main/resources/application.properties
+└── pom.xml
 ```
 
----
+## Technologies
 
-## ⚙️ Development Guide
+- Java 17
+- Spring Boot 3.3.x
+- Maven
+- Spring Web
+- Spring Data MongoDB
+- Spring Validation
+- Lombok
+- Spring Boot DevTools
 
-### Prerequisites
-* Java JDK 21 (LTS)
-* Maven 3.9+
-* Running PostgreSQL instance (configured via environment variables or Docker Compose)
+## Prerequisites
 
-### Common Commands
+- Java 17 or newer
+- Maven 3.9+
+- MongoDB connection string available via the MONGODB_URI environment variable
 
-* **Compile and Build**:
-  ```bash
-  mvn clean compile
-  ```
-* **Run Tests**:
-  ```bash
-  mvn test
-  ```
-* **Run Locally**:
-  ```bash
-  mvn spring-boot:run
-  ```
+## Setup
 
----
+1. Set the MongoDB URI:
+   ```powershell
+   $env:MONGODB_URI="mongodb://localhost:27017/airs"
+   ```
+2. Build the project:
+   ```bash
+   mvn clean package
+   ```
+3. Run the project:
+   ```bash
+   mvn spring-boot:run
+   ```
 
-## 🔌 API Boundaries (Planned)
+## MongoDB Atlas
 
-| HTTP Verb | Path | Role |
-| :--- | :--- | :--- |
-| **POST** | `/api/v1/alerts` | Ingests incoming alerts from monitoring tools (Prometheus, CloudWatch) |
-| **GET** | `/api/v1/incidents` | Lists active and resolved incidents |
-| **GET** | `/api/v1/incidents/{id}` | Fetches incident summaries, metrics, and generated reports |
-| **POST** | `/api/v1/incidents/{id}/re-evaluate` | Manually triggers the AI engine to re-run investigation |
-| **GET** | `/api/v1/dashboard/metrics` | Computes aggregation metrics (MTTR, incident spikes, agent task latency) |
+If you are using MongoDB Atlas, set the environment variable to your Atlas connection string before running the application.
+
+## Notes
+
+- The application starts on port 8080.
+- The project uses global CORS and a shared exception handler as infrastructure defaults.

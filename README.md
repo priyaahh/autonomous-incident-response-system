@@ -88,3 +88,55 @@ graph TD
    * Navigate to [backend-service/](file:///c:/Users/priya/OneDrive/Desktop/AutoSOC/backend-service/) for Maven setup.
    * Navigate to [frontend-service/](file:///c:/Users/priya/OneDrive/Desktop/AutoSOC/frontend-service/) for NPM package installs.
 3. **Architecture Reference**: Study the central systems architecture guides in [docs/architecture/](file:///c:/Users/priya/OneDrive/Desktop/AutoSOC/docs/architecture/).
+
+---
+
+## Backend Service Setup
+
+### Project Overview
+The backend service is a Spring Boot 3.x application scaffolded for the AIRS platform. It is intentionally limited to infrastructure setup, configuration, and cross-cutting concerns so teammates can add modules such as logging and incident management without conflicting with the foundational structure.
+
+### Backend Folder Structure
+```text
+backend-service/
+├── src/main/java/com/airs/backendservice/
+│   ├── config/
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   ├── model/
+│   └── exception/
+├── src/main/resources/application.properties
+└── pom.xml
+```
+
+### Prerequisites
+- Java 17+
+- Maven 3.9+
+- MongoDB Atlas account or a local MongoDB instance
+
+### Setup Instructions
+1. Set the MongoDB connection string:
+   ```bash
+   set MONGODB_URI=mongodb://localhost:27017/airs
+   ```
+2. Build the service:
+   ```bash
+   mvn clean package
+   ```
+3. Run the service:
+   ```bash
+   mvn spring-boot:run
+   ```
+
+### MongoDB Atlas Configuration
+1. Create a MongoDB Atlas cluster.
+2. Create a database user and allow your IP address.
+3. Copy the connection string.
+4. Export it as `MONGODB_URI` before starting the service.
+
+### Git Branch Strategy
+- `main`: stable branch
+- `develop`: integration branch
+- `feature/<name>`: feature work
+- `bugfix/<name>`: bug fixes
