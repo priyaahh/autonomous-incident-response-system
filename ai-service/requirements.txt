@@ -1,0 +1,14 @@
+python-dotenv==1.0.0
+flask==3.0.0
+flask-cors==4.0.0
+langgraph==0.0.50
+langchain==0.1.16
+langchain-google-genai==0.0.13
+langchain-community==0.0.36
+chromadb==0.4.27
+elasticsearch==8.11.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+redis==5.0.1
+requests==2.31.0
+python-dateutil==2.8.2
