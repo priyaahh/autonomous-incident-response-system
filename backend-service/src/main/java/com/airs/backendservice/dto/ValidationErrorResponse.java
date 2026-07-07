@@ -1,0 +1,15 @@
+package com.airs.backendservice.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ValidationErrorResponse {
+    private String field;
+    private String message;
+}
