@@ -15,6 +15,10 @@ public class IncidentController {
     @Autowired
     private IncidentService incidentService;
 
+    // =========================
+    // CRUD APIs
+    // =========================
+
     // Create Incident
     @PostMapping
     public Incident createIncident(@RequestBody Incident incident) {
@@ -44,5 +48,59 @@ public class IncidentController {
     @DeleteMapping("/{id}")
     public void deleteIncident(@PathVariable String id) {
         incidentService.deleteIncident(id);
+    }
+
+    // =========================
+    // INCIDENT WORKFLOW APIs
+    // =========================
+
+    // Get Open Incidents
+    @GetMapping("/open")
+    public List<Incident> getOpenIncidents() {
+        return incidentService.getOpenIncidents();
+    }
+
+    // Get Closed Incidents
+    @GetMapping("/closed")
+    public List<Incident> getClosedIncidents() {
+        return incidentService.getClosedIncidents();
+    }
+
+    // Search by Priority
+    @GetMapping("/priority/{priority}")
+    public List<Incident> getIncidentsByPriority(@PathVariable String priority) {
+        return incidentService.getIncidentsByPriority(priority);
+    }
+
+    // Search by Category
+    @GetMapping("/category/{category}")
+    public List<Incident> getIncidentsByCategory(@PathVariable String category) {
+        return incidentService.getIncidentsByCategory(category);
+    }
+
+    // Search by Assigned Team
+    @GetMapping("/team/{team}")
+    public List<Incident> getIncidentsByAssignedTeam(@PathVariable String team) {
+        return incidentService.getIncidentsByAssignedTeam(team);
+    }
+
+    // Search by Severity
+    @GetMapping("/severity/{severity}")
+    public List<Incident> getIncidentsBySeverity(@PathVariable String severity) {
+        return incidentService.getIncidentsBySeverity(severity);
+    }
+
+    // Update Incident Status
+    @PatchMapping("/{id}/status")
+    public Incident updateIncidentStatus(@PathVariable String id,
+                                         @RequestParam String status) {
+        return incidentService.updateIncidentStatus(id, status);
+    }
+
+    // Assign Team
+    @PatchMapping("/{id}/assign")
+    public Incident assignIncidentTeam(@PathVariable String id,
+                                       @RequestParam String team) {
+        return incidentService.assignIncidentTeam(id, team);
     }
 }
